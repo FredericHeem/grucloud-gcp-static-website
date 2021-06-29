@@ -1,0 +1,47 @@
+{
+    "command": "list",
+    "commandOptions": {
+        "dotFile": "output/1304d56b-6be2-428e-8cdb-f73e18aba712.dot",
+        "title": "",
+        "provider": [
+            "google"
+        ],
+        "all": true,
+        "graph": true,
+        "typesExclude": [
+            "IamBinding",
+            "IamPolicy",
+            "ServiceAccount"
+        ]
+    },
+    "programOptions": {
+        "infra": "iac_google.js",
+        "json": "output/gc-list-1304d56b-6be2-428e-8cdb-f73e18aba712.json",
+        "config": "input/config-1304d56b-6be2-428e-8cdb-f73e18aba712.js"
+    },
+    "result": {
+        "error": false,
+        "results": [
+            {
+                "providerName": "google",
+                "kind": "livesPerType",
+                "error": false,
+                "results": [
+                    {
+                        "type": "IamBinding",
+                        "resources": []
+                    },
+                    {
+                        "type": "IamPolicy",
+                        "resources": []
+                    },
+                    {
+                        "type": "ServiceAccount",
+                        "resources": []
+                    }
+                ]
+            }
+        ],
+        "kind": "livesPerProvider"
+    }
+}
