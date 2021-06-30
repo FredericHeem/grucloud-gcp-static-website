@@ -1,7 +1,7 @@
 {
     "command": "list",
     "commandOptions": {
-        "dotFile": "output/1304d56b-6be2-428e-8cdb-f73e18aba712.dot",
+        "dotFile": "output/7cffae7d-f7e9-49e3-8aab-ab6bdf36dfdd.dot",
         "title": "",
         "provider": [
             "google"
@@ -16,8 +16,8 @@
     },
     "programOptions": {
         "infra": "iac_google.js",
-        "json": "output/gc-list-1304d56b-6be2-428e-8cdb-f73e18aba712.json",
-        "config": "input/config-1304d56b-6be2-428e-8cdb-f73e18aba712.js"
+        "json": "output/gc-list-7cffae7d-f7e9-49e3-8aab-ab6bdf36dfdd.json",
+        "config": "input/config-7cffae7d-f7e9-49e3-8aab-ab6bdf36dfdd.js"
     },
     "result": {
         "error": false,
@@ -28,11 +28,90 @@
                 "error": false,
                 "results": [
                     {
-                        "type": "IamBinding",
-                        "resources": []
+                        "type": "DnsManagedZone",
+                        "resources": [
+                            {
+                                "uri": "google::DnsManagedZone::dns-managed-zone",
+                                "name": "dns-managed-zone",
+                                "displayName": "dns-managed-zone",
+                                "id": "dns-managed-zone",
+                                "providerName": "google",
+                                "type": "DnsManagedZone",
+                                "live": {
+                                    "name": "dns-managed-zone",
+                                    "dnsName": "grucloud.org.",
+                                    "description": "Managed By GruCloud",
+                                    "id": "7000071799559258516",
+                                    "nameServers": [
+                                        "ns-cloud-a1.googledomains.com.",
+                                        "ns-cloud-a2.googledomains.com.",
+                                        "ns-cloud-a3.googledomains.com.",
+                                        "ns-cloud-a4.googledomains.com."
+                                    ],
+                                    "creationTime": "2021-06-30T08:10:10.611Z",
+                                    "visibility": "public",
+                                    "kind": "dns#managedZone",
+                                    "recordSet": [
+                                        {
+                                            "name": "grucloud.org.",
+                                            "type": "A",
+                                            "ttl": 86400,
+                                            "rrdatas": [
+                                                "34.149.187.215"
+                                            ],
+                                            "signatureRrdatas": [],
+                                            "kind": "dns#resourceRecordSet"
+                                        },
+                                        {
+                                            "name": "grucloud.org.",
+                                            "type": "NS",
+                                            "ttl": 21600,
+                                            "rrdatas": [
+                                                "ns-cloud-a1.googledomains.com.",
+                                                "ns-cloud-a2.googledomains.com.",
+                                                "ns-cloud-a3.googledomains.com.",
+                                                "ns-cloud-a4.googledomains.com."
+                                            ],
+                                            "signatureRrdatas": [],
+                                            "kind": "dns#resourceRecordSet"
+                                        },
+                                        {
+                                            "name": "grucloud.org.",
+                                            "type": "SOA",
+                                            "ttl": 21600,
+                                            "rrdatas": [
+                                                "ns-cloud-a1.googledomains.com. cloud-dns-hostmaster.google.com. 1 21600 3600 259200 300"
+                                            ],
+                                            "signatureRrdatas": [],
+                                            "kind": "dns#resourceRecordSet"
+                                        },
+                                        {
+                                            "name": "www.grucloud.org.",
+                                            "type": "A",
+                                            "ttl": 86400,
+                                            "rrdatas": [
+                                                "34.149.187.215"
+                                            ],
+                                            "signatureRrdatas": [],
+                                            "kind": "dns#resourceRecordSet"
+                                        }
+                                    ]
+                                },
+                                "cannotBeDeleted": false,
+                                "isDefault": false,
+                                "namespace": "",
+                                "dependencies": [],
+                                "managedByUs": true,
+                                "show": true
+                            }
+                        ]
                     },
                     {
                         "type": "IamPolicy",
+                        "resources": []
+                    },
+                    {
+                        "type": "IamBinding",
                         "resources": []
                     },
                     {
