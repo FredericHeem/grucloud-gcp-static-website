@@ -7,33 +7,17 @@ const mime = require("mime-types");
 
 const { GoogleProvider } = require("@grucloud/provider-google");
 const hook = require("./hook");
-
-async function getFiles(dir) {
-  const dirResolved = resolve(dir);
-  const files = await getFilesWalk(dir);
-  return files.map((file) => file.replace(`${dirResolved}/`, ""));
-}
-
-async function getFilesWalk(dir) {
-  const dirents = await readdir(dir, { withFileTypes: true });
-  const files = await Promise.all(
-    dirents.map((dirent) => {
-      const res = resolve(dir, dirent.name);
-      return dirent.isDirectory() ? getFilesWalk(res) : res;
-    })
-  );
-  return files.flat();
-}
+const { getFiles } = require("./utils");
 
 exports.createStack = async () => {
   const provider = GoogleProvider({ config: require("./config") });
 
-  const { bucketName, websiteDir } = config;
+  const { bucketName, websiteDir } = provider.config;
   assert(bucketName);
   assert(websiteDir);
 
   const domain = bucketName;
-  const files = await getFiles(websiteDir);
+  const files = await getFiles({ dir: websiteDir });
 
   const bucketPublic = await provider.makeBucket({
     name: bucketName,
@@ -102,34 +86,9 @@ exports.createStack = async () => {
     properties: () => ({}),
   });
 
-  const dnsManagedZone = await provider.makeDnsManagedZone({
-    name: "dns-managed-zone",
-    dependencies: { globalForwardingRule },
-
-    properties: ({ dependencies: { globalForwardingRule } }) => {
-      return {
-        dnsName: `${domain}.`,
-        recordSet: [
-          {
-            name: `${domain}.`,
-            rrdatas: [globalForwardingRule.live?.IPAddress],
-            ttl: 86400,
-            type: "A",
-          },
-          {
-            name: `www.${domain}.`,
-            rrdatas: [globalForwardingRule.live?.IPAddress],
-            ttl: 86400,
-            type: "A",
-          },
-        ],
-      };
-    },
-  });
-
   return {
     provider,
-    resources: { bucketPublic, dnsManagedZone, sslCertificate },
+    resources: { bucketPublic, sslCertificate, globalForwardingRule },
     hooks: [hook],
   };
 };
